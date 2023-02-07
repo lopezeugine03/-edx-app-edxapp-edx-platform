@@ -644,8 +644,8 @@ ul.fa-ul{
 
     &.button-oa2-apple-id {
       color: white;
-      border-color: $apple-black;
-      background-color: $apple-black;
+      border-color: $facebook-focus-blue;
+      background-color: $facebook-focus-blue;
 
       span {
         vertical-align: middle;
@@ -664,8 +664,8 @@ ul.fa-ul{
 
       &:hover,
       &:focus {
-        background-color: $apple-focus-black;
-        border: 1px solid $apple-focus-black;
+        background-color: $black;
+        border: 1px solid $black;
         color: $white;
       }
     }

@@ -1,0 +1,130 @@
+<%page expression_filter="h"/>
+<%inherit file="main.html" />
+<%namespace name='static' file='static_content.html'/>
+<%!
+from django.utils.translation import ugettext as _
+from django.urls import reverse
+
+from openedx.core.djangolib.markup import HTML, Text
+%>
+
+<section class="course-detailed-tracks hero-banner-info">
+    <div class="row inner-banner">
+	<div class="bg-img-container">
+	    <img src="/static/comprehensive/images/devOps-track.png" class="img-fluid">  
+	</div>
+	<div class="m-5">
+	    <div class="row">
+		<div class="col-md-12 breadcrumb-wrapper">
+		    <a class="nohover" href="/tracks/all/"> 
+			<i class="fa fa-chevron-left icon"></i> Back to Industry Certification Tracks
+		    </a>
+		</div>
+	    </div>
+
+    	</div>
+    </div>
+</section>
+<!-- /Inner Banner and breadcrumb -->
+<!-- Carousel -->
+<section class="carousel-section d-none">
+    <div class="container">
+    <!-- Top content -->
+	<div class="top-content">
+	    <div class="container-fluid">
+		<div id="carouselTrackItems" class="carousel slide" data-ride="carousel">
+		    <div class="carousel-inner row w-100 mx-auto" role="listbox">
+			
+		    </div>
+		    <!-- Controls -->
+		    <a class="carousel-control-prev nohover" href="#carouselTrackItems" role="button" data-slide="prev">
+		    	<div class="control-btn">
+			    <i class="fa fa-chevron-left"></i>
+		    	</div>
+		    </a>
+		    <a class="carousel-control-next nohover" href="#carouselTrackItems" role="button" data-slide="next">
+			<div class="control-btn">
+			    <i class="fa fa-chevron-right"></i>
+			</div>
+		    </a>
+		</div> 
+	    </div>
+	</div>
+    </div>
+</div>
+</section>
+<!-- / Carousel -->
+
+<!-- Page Content -->
+<section class="course-detailed-tracks page">
+    <div class="m-5">
+	<div class="row">
+	    <div class="col-md-6 col-sm-12">
+		<h2 class="h4 sub-title">TRACK OVERVIEW</h2>
+	        ${track.overview  | n}
+		<h2 class="h4 sub-title">WHAT YOU'LL LEARN</h2>
+		${track.skills_to_learn | n}
+	    </div>
+	    <div class="col-md-5 offset-md-1 col-sm-12 sidepanel">
+    	        <h2 class="h4 sub-title">TRACK INCLUDES</h2>
+		<div class="card">
+		    <ul>
+		    % for course in courses:
+    		    	<li>${course[0].display_name}</li>
+  		    %endfor
+		    </ul>
+		</div>
+		<hr>
+		<h2 class="h4 sub-title">PREREQUISITES</h2>
+		<div class="card">
+		    ${track.prerequisites | n} 
+		</div>
+	    </div>
+	</div>
+    </div>
+</section>
+<!-- /Short Courses-->
+<section class="find-courses">
+<section class="courses-container">
+    % if settings.FEATURES.get('COURSES_ARE_BROWSABLE'):
+	<section class="courses">
+	    <div style="background-color: white; width: 100%; display: block; overflow: hidden; padding: .5%; position:relative;">
+		<ul style="padding-top:1%;" class="courses-listing">
+		    ## limiting the course number by using HOMEPAGE_COURSE_MAX as the maximum number of courses
+			%for course in courses:
+			<li class="courses-listing-item">
+			    <%include file="course_ice.html" args="course=course[0]" />
+			</li>
+			%endfor
+		</ul>
+	    </div>
+	</section>
+	## in case there are courses that are not shown on the homepage, a 'View all Courses' link should appear
+	% if settings.HOMEPAGE_COURSE_MAX and len(courses) > settings.HOMEPAGE_COURSE_MAX:
+	    <div class="courses-more">
+		<a class="courses-more-cta" href="${marketing_link('COURSES')}"> ${_("View all Courses")} </a>
+	    </div>
+	% endif
+    % endif
+</section>
+</section>
+<!-- /Page Content -->
+</main>
+
+<%block name="js_extra">
+   <script type="text/javascript">
+      $(window).load(function() {
+         if(getParameterByName('next')) {
+              $('#login').trigger("click");
+         }
+      })
+   </script>
+</%block>
+
+% if show_signup_immediately is not UNDEFINED:
+  ## NOTE: This won't work in production, because anonymous views are cached, so it will
+  ## show either with or without this extra js for 3 minutes at a time.
+<script type="text/javascript">
+  $(window).load(function() {$('#signup_action').trigger("click");});
+</script>
+% endif

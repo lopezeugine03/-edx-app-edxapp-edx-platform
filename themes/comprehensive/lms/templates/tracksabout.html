@@ -1,0 +1,70 @@
+<%page expression_filter="h"/>
+<%inherit file="main.html" />
+<%namespace name='static' file='static_content.html'/>
+<%!
+from django.utils.translation import ugettext as _
+from django.urls import reverse
+
+from openedx.core.djangolib.markup import HTML, Text
+%>
+
+<div class="about-us-container">
+        <div class="about-us-quote-img-one-container" style="width: 100%;">
+            <img src="https://i.imgur.com/7yHymmq.png">
+        </div>
+        <div class="about-us-tentang-container">
+            <div class="about-us-tentang">
+                <h2>TENTANG KAMI</h2>
+                <p>ICE Institute adalah Indonesia Cyber
+                    Education Institute, merupakan pusat kuliah online yang terakreditasi oleh
+                    Kementerian Pendidikan dan Kebudayaan. Menyediakan bermacam kuliah online dari banyak Perguruan Tinggi
+                    dan
+                    penyedia pembelajaran daring di seluruh Indonesia.
+                    Tujuan utama dari ICE Institute adalah untuk memfasilitasi penyediaan pendidikan berkualitas sekaligus
+                    menjamin
+                    kualitas layanan pembelajaran daring dan pendidikan jarak jauh. Lewat ICE Institute, pengguna akan
+                    termudahkan
+                    dalam memilih kuliah online yang tepat untuk pengembangan karir di era Industri 4.0 </p>
+            </div>
+        </div>
+        <div class="about-us-quote-one">
+            <div class="about-us-quote-img-one-container">
+                <img src="https://i.imgur.com/HqeNGYK.png" alt="quote 1">
+            </div>
+            <div class="about-us-quote-p-one-container">
+                <p>ICE Institute adalah jawaban untuk
+                    menyongsong era
+                    revolusi industri 4.0 yang telah mengubah cara pandang
+                    tentang pendidikan. Perubahan yang dilakukan tidak
+                    hanya sekadar cara mengajar, tetapi jauh yang lebih
+                    esensial, yakni perubahan cara pandang terhadap
+                    konsep pendidikan menjadi holistik, bukan lagi parsial.
+                    Dalam era revolusi industri 4.0 segala hal menjadi tanpa
+                    batas (borderless) dengan penggunaan daya komputasi
+                    dan data yang tidak terbatas (unlimited). Ini terjadi
+                    karena dipengaruhi oleh perkembangan internet dan
+                    teknologi digital yang masif sebagai tulang punggung
+                    pergerakan dan konektivitas manusia dan mesin.</p>
+            </div>
+        </div>
+        <div class="about-us-quote-two">
+            <div class="about-us-quote-p-two-container">
+                <p>ICE Institute diharapkan mampu
+                    berperan dalam peningkatan
+                    perluasan akses dan pemerataan
+                    kualitas pendidikan untuk
+                    mendorong Angka Partisipasi
+                    Pendidikan (APK) menjadi 40%. ICE
+                    Institute juga akan membantu
+                    pemenuhan kebutuhan lifelong
+                    learner melalui penyediaan sistem
+                    dan content pembelajaran bermutu
+                    yang dapat diakses kapanpun dan
+                    dimanapun.</p>
+            </div>
+            <div class="about-us-quote-img-two-container">
+                <img src="https://i.imgur.com/s2QWI96.png" alt="quote 2">
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<%page expression_filter="h"/>
+<%inherit file="main.html" />
+<%namespace name='static' file='static_content.html'/>
+<%!
+from django.utils.translation import ugettext as _
+from django.urls import reverse
+
+from openedx.core.djangolib.markup import HTML, Text
+%>
+
+<main id="main" aria-label="Content" tabindex="-1">
+    <section class="home">
+        <div class="container">
+            <div class="cert-error-box">
+                <h1>${Message}</h1>
+                <h2 class="">you will be redirected back to the course shortly</h2>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+<script type="text/javascript">
+    setTimeout(function(){
+        var returnURL = "${ReturnURL}";
+        window.location.href = returnURL;
+    }, 5000);
+</script>
+
+<%block name="js_extra">
+   <script type="text/javascript">
+      $(window).load(function() {
+         if(getParameterByName('next')) {
+              $('#login').trigger("click");
+         }
+      })
+   </script>
+</%block>
+
+% if show_signup_immediately is not UNDEFINED:
+  ## NOTE: This won't work in production, because anonymous views are cached, so it will
+  ## show either with or without this extra js for 3 minutes at a time.
+<script type="text/javascript">
+  $(window).load(function() {$('#signup_action').trigger("click");});
+</script>
+% endif
